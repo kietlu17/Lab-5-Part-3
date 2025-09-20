@@ -1,0 +1,11 @@
+<%- include('../partials/header') %>
+<h2>Quên mật khẩu</h2>
+<form method="POST" action="/users/forgot">
+    <input type="text" name="username" placeholder="Tên đăng nhập" required><br>
+    <input type="password" name="newPassword" placeholder="Mật khẩu mới" required><br>
+    <button type="submit">Đổi mật khẩu</button>
+</form>
+<% if (typeof error !== 'undefined') { %>
+    <p style="color:red"><%= error %></p>
+<% } %>
+<%- include('../partials/footer') %>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Suppliers</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="container py-4">
+
+  <%- include('../partials/header') %>
+
+  <h1 class="mb-3">Suppliers</h1>
+        <form class="d-inline mb-3" method="GET" action="/products">
+            <select name="supplier" class="form-select form-select-sm d-inline w-auto" onchange="this.form.submit()">
+            <option value="">--Chọn nhà cung cấp--</option>
+            <% if (typeof suppliers !== 'undefined') { suppliers.forEach(s => { %>
+              <option value="<%= s._id %>"><%= s.name %></option>
+            <% }) } %>
+          </select>
+        </form>
+    <br>
+    <br>
+  <a href="/suppliers/new" class="btn btn-primary mb-3">+ Add Supplier</a>
+
+  <table class="table table-striped table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Phone</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% suppliers.forEach(supplier => { %>
+        <tr>
+          <td><%= supplier.name %></td>
+          <td><%= supplier.address %></td>
+          <td><%= supplier.phone %></td>
+          <td>
+            <a href="/suppliers/<%= supplier._id %>/edit" class="btn btn-sm btn-warning">Edit</a>
+            <form action="/suppliers/<%= supplier._id %>?_method=DELETE" method="POST" class="d-inline">
+              <button class="btn btn-sm btn-danger">Delete</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
+  <%- include('../partials/footer') %>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
