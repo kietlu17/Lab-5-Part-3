@@ -59,6 +59,6 @@ views/
 - Đăng xuất: `/users/logout`
 
 ## Tác giả
-Lab 5 - Hệ thống thông tin
+Nguyễn Thành Kiệt
 
 
